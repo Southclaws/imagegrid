@@ -1,0 +1,77 @@
+body,
+html,
+#__next {
+  margin: 0px;
+  padding: 0px;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-flow: dense;
+}
+@media (min-width: 960px) {
+  .item-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 480px) and (max-width: 960px) {
+  .item-grid {
+    grid-template-columns: 1fr 1fr 1fr 0px;
+  }
+}
+@media (max-width: 480px) {
+  .item-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*
+Base is applied to all grid items and sets some basic properties. The :before
+pseudo element also does some stuff, not entirely sure what, I got it from:
+https://css-tricks.com/aspect-ratios-grid-items/ and it fixed an issue I was
+seeing at the time.
+*/
+
+.item-base {
+  width: 100%;
+  height: 250px;
+}
+
+.item-base:before {
+  content: "";
+  width: 0px;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+/*
+Applied to img tags inside the grid items. This sets the `cover` fit model so
+the image doesn't overflow the bounding box and also ensures it fills the entire
+box by setting width and height.
+*/
+
+.item-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+Additional classes for creating grid items that span multiple columns or rows.
+The idea is `wide` can be composed with `tall` to create an item that spans a
+2x2 grid. And the `across` is for spanning across the entire page for panoramas.
+*/
+
+.item-wide {
+  grid-column: span 2;
+}
+
+.item-tall {
+  grid-row: span 2;
+  height: 500px;
+}
+
+.item-across {
+  grid-column: span 4;
+}
