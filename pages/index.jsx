@@ -1,21 +1,28 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
 
-import "./style.css";
+import './style.css';
+
+const Wrapper = styled.div`
+  background-color: red;
+`;
 
 const Thumb = ({ id }) => {
-  let classes = ["item-base"];
+  let classes = ['item-base'];
   if (Math.random() < 0.2) {
-    classes.push("item-wide");
+    classes.push('item-wide');
   } else if (Math.random() < 0.2) {
-    classes.push("item-tall");
+    classes.push('item-tall');
   } else if (Math.random() < 0.1) {
-    classes.push("item-across");
+    classes.push('item-across');
   }
 
   return (
-    <div className={classes.join(" ")}>
-      <img className="item-image" src={`https://randomfox.ca/images/${id}.jpg`} />
-    </div>
+    <Wrapper>
+      <div className={classes.join(' ')}>
+        <img className="item-image" src={`https://randomfox.ca/images/${id}.jpg`} />
+      </div>
+    </Wrapper>
   );
 };
 
